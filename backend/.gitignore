@@ -8,11 +8,6 @@ yarn-error.log*
 # Dependencies
 node_modules/
 
-# Build files
-dist
-dist-ssr
-*.local
-
 # Environment variables
 .env
 

@@ -16,12 +16,12 @@ const Add = ({token}) => {
   const [category, setCategory] = useState('Men');
   const [subCategory, setSubCategory] = useState('Topwear');
   const [price, setPrice] = useState('');
-  const [bestseller, setBestseller] = useState(false);
+  const [bestSeller, setBestSeller] = useState(false);
   const [sizes, setSizes] = useState([]);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    console.log("Bestseller state:", bestseller);
+    // Form submission
 
     try {
       const formData = new FormData()
@@ -30,7 +30,11 @@ const Add = ({token}) => {
       formData.append("category", category)
       formData.append("subCategory", subCategory)
       formData.append("price", price)
-      formData.append("bestseller", bestseller.toString())
+      
+      // Use 'bestseller' (lowercase) to match the model field name
+      formData.append("bestseller", bestSeller ? "true" : "false");
+      formData.append("bestsellerNum", bestSeller ? 1 : 0);
+      
       formData.append("sizes", JSON.stringify(sizes))
 
       image1 && formData.append("image1",image1)
@@ -38,6 +42,8 @@ const Add = ({token}) => {
       image3 && formData.append("image3",image3)
       image4 && formData.append("image4",image4)
 
+      // Submit the form data
+      
       const response = await axios.post(backendUrl+ "/api/product/add",formData,{headers:{token}})
 
       if (response.data.success) {
@@ -49,6 +55,8 @@ const Add = ({token}) => {
         setImage3(false);
         setImage4(false);
         setPrice('');
+        setBestSeller(false);
+        setSizes([]);
       } else{
         toast.error(response.data.message)
       }
@@ -110,7 +118,7 @@ const Add = ({token}) => {
           <select onChange={(e)=>setSubCategory(e.target.value)} className='w-full px-3 py-2'>
             <option value="Topwear">Topwear</option>
             <option value="Bottomwear">Bottomwear</option>
-            <option value="Winterwera">Winterwera</option>
+            <option value="Winterwear">Winterwear</option>
           </select>
         </div>
 
@@ -147,9 +155,14 @@ const Add = ({token}) => {
       </div>
 
       <div className='flex gap-2 mt-2'>
-        {/* <input onChange={(e)=>setBestseller(prev => !prev)} checked={bestseller} type='checkbox' id="bestseller" /> */}
-        <input type='checkbox' id="bestseller" checked={bestseller} onChange={(e) => setBestseller(e.target.checked)} />
-        <label className='cursor-pointer' htmlFor="bestseller">Add to bestseller</label>
+        {/* <input onChange={(e)=>setBestSeller(prev => !prev)} checked={bestSeller} type='checkbox' id="bestSeller" /> */}
+        <input 
+  type='checkbox' 
+  id="bestSeller" 
+  checked={bestSeller} 
+  onChange={(e) => setBestSeller(e.target.checked)} 
+/>
+        <label className='cursor-pointer' htmlFor="bestSeller">Add to Best Seller</label>
       </div>
 
       <button type='submit' className='w-28 py-3 mt-4 bg-black text-white'>ADD</button>

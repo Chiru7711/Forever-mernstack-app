@@ -9,7 +9,9 @@ const BestSeller = () => {
     const [bestSeller, setBestSeller] = useState([])
 
     useEffect(() => {
-        const bestProduct = products.filter((item)=>(item.bestseller));
+        // Use lowercase 'bestseller' as that's what MongoDB stores
+        const bestProduct = products.filter((item) => item.bestseller === true);
+        console.log("Filtered bestseller products:", bestProduct);
         setBestSeller(bestProduct.slice(0,5))
     }, [products])
 

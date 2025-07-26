@@ -24,7 +24,7 @@ const addProduct = async (req, res) =>{
             })
         )
         // to parsed result sizes
-        const parsedSizes = Array.isArray(sizes) ? sizes : sizes ? sizes.split(",") : [];
+        const parsedSizes = Array.isArray(sizes) ? sizes : sizes ? JSON.parse(sizes) : [];
         // save the data in mongodb
         const productData = {
             name,
@@ -58,7 +58,37 @@ const addProduct = async (req, res) =>{
 const  listProducts = async (req, res) =>{
     try {
         const  products = await productModel.find({});
-        res.json({success: true, products})
+        
+        // Clean up malformed sizes data
+        const cleanedProducts = products.map(product => {
+            if (product.sizes) {
+                let cleanedSizes = product.sizes;
+                
+                // If sizes is a string that looks like an array, parse it
+                if (typeof product.sizes === 'string') {
+                    try {
+                        cleanedSizes = JSON.parse(product.sizes);
+                    } catch (e) {
+                        cleanedSizes = product.sizes.split(',').map(s => s.trim());
+                    }
+                }
+                
+                // Clean up individual size strings
+                if (Array.isArray(cleanedSizes)) {
+                    cleanedSizes = cleanedSizes.map(size => {
+                        if (typeof size === 'string') {
+                            return size.replace(/["\'\[\]]/g, '').trim();
+                        }
+                        return size;
+                    }).filter(size => size && size.length > 0);
+                }
+                
+                return { ...product.toObject(), sizes: cleanedSizes };
+            }
+            return product;
+        });
+        
+        res.json({success: true, products: cleanedProducts})
 
     } catch (error) {
         console.log(error);

@@ -1,8 +1,35 @@
-# React + Vite
+# Admin Panel - Ecommerce Forever
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Admin dashboard for managing the Ecommerce Forever e-commerce platform.
 
-Currently, two official plugins are available:
+## Features
+- Product management (Add, Edit, Delete)
+- Order management and status updates
+- User management
+- Dashboard analytics
+- Image upload for products
+- Inventory tracking
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- React with Vite
+- Tailwind CSS
+- React Router
+- Axios for API calls
+- React Toastify for notifications
+
+## Setup
+1. Install dependencies: `npm install`
+2. Configure environment variables in `.env`
+3. Start development server: `npm run dev`
+4. Build for production: `npm run build`
+
+## Environment Variables
+- `VITE_BACKEND_URL` - Backend API URL
+
+## Available Scripts
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+
+## Admin Access
+Use the admin credentials configured in the backend environment variables to access the admin panel.

@@ -46,7 +46,7 @@ Ecommerce-Forever/
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Chiru7711/Forever
    cd Ecommerce-Forever
    ```
 

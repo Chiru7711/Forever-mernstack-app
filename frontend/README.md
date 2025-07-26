@@ -1,8 +1,33 @@
-# React + Vite
+# Frontend - Ecommerce Forever
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Customer-facing React application for the Ecommerce Forever e-commerce platform.
 
-Currently, two official plugins are available:
+## Features
+- Product browsing and search
+- Shopping cart functionality
+- User authentication
+- Order placement and tracking
+- Responsive design
+- Payment integration
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- React with Vite
+- Tailwind CSS
+- React Router
+- Axios for API calls
+- React Toastify for notifications
+
+## Setup
+1. Install dependencies: `npm install`
+2. Configure environment variables in `.env`
+3. Start development server: `npm run dev`
+4. Build for production: `npm run build`
+
+## Environment Variables
+- `VITE_BACKEND_URL` - Backend API URL
+- `VITE_RAZORPAY_KEY_ID` - Razorpay public key
+
+## Available Scripts
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build

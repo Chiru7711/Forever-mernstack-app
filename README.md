@@ -5,6 +5,10 @@ A modern, full-stack e-commerce platform with separate frontend, backend, and ad
 ![Node](https://img.shields.io/badge/node-v14+-green.svg)
 ![React](https://img.shields.io/badge/react-latest-blue.svg)
 
+## 🌐 Live Demo
+
+**Frontend**: [https://forever-inky-psi.vercel.app](https://forever-inky-psi.vercel.app)
+
 ## 🚀 Project Overview
 
 Ecommerce Forever is a complete online shopping solution featuring:

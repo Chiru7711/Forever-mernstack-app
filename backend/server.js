@@ -11,7 +11,8 @@ import cartRouter from './routes/cartRoute.js';
 // App Config
 dotenv.config()
 const app = express();
-const port = process.env.PORT || 5000;
+
+// Initialize connections
 connectDB()
 connectCloudinary();
 
@@ -29,5 +30,11 @@ app.get('/', (req, res) => {
     res.send('API Working!');
 })
 
-app.listen(port, () => console.log('Server listening on port: ' + port));
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+    const port = process.env.PORT || 5000;
+    app.listen(port, () => console.log('Server listening on port: ' + port));
+}
+
+export default app;
 
